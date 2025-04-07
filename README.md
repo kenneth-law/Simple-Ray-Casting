@@ -2,12 +2,7 @@
 Interactive Matrix Display with Shadows
 
 
-
-![Uploading DemoRayCast.gif…]()
-
-
-
-
+![DemoRayCast](https://github.com/user-attachments/assets/3a36178b-e8a3-4ed1-bc4d-06e1c235ded8)
 
 
 # Ray Casting Shadow Simulation

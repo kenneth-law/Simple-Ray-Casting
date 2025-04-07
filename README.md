@@ -1,5 +1,15 @@
 # Simple-Ray-Casting
 Interactive Matrix Display with Shadows
+
+
+
+
+https://github.com/user-attachments/assets/a4fe85c5-fd93-4593-b49a-fb5e97714458
+
+
+
+
+
 # Ray Casting Shadow Simulation
 
 This project simulates light and shadow in a 2D grid using simple ray casting.

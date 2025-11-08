@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  # Production service
+  raycast:
+    build:
+      context: .
+      target: production
+    image: simple-ray-casting:latest
+    container_name: raycast-app
+    environment:
+      - DISPLAY=${DISPLAY:-:99}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    network_mode: host
+    restart: unless-stopped
+
+  # Development service with hot reload
+  raycast-dev:
+    build:
+      context: .
+      target: development
+    image: simple-ray-casting:dev
+    container_name: raycast-dev
+    environment:
+      - DISPLAY=${DISPLAY:-:99}
+    volumes:
+      - .:/app:rw
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    network_mode: host
+    command: python Main.py
+
+  # Testing service
+  raycast-test:
+    build:
+      context: .
+      target: test
+    image: simple-ray-casting:test
+    container_name: raycast-test
+    volumes:
+      - .:/app:ro
+    command: pytest tests/ -v --cov=. --cov-report=term
+
+  # Headless service (for CI/CD environments)
+  raycast-headless:
+    build:
+      context: .
+      target: headless
+    image: simple-ray-casting:headless
+    container_name: raycast-headless
+    environment:
+      - DISPLAY=:99
+    command: ["xvfb-run", "-a", "python", "Main.py"]
